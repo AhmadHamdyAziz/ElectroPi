@@ -808,7 +808,7 @@ The implementation prioritizes the core architecture, business rules, persistenc
 | Integration tests | Not implemented |
 | Data isolation tests | Not implemented |
 | Frontend unit tests | Not implemented |
-| Git repository | Not committed yet |
+| Git repository | https://github.com/AhmadHamdyAziz/ElectroPi |
 | Postman collection | Not provided |
 | Swagger | Available |
 | Screenshots/video | Not provided |
