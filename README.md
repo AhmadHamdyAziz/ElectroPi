@@ -1,5 +1,9 @@
 # ElectroPi Support Ticket Management System
 
+## 0. Project Repo
+
+https://github.com/AhmadHamdyAziz/ElectroPi
+
 ## 1. Project Overview
 
 ElectroPi Support Ticket Management System is a role-based support ticketing application built with ASP.NET Core Web API and Angular.
@@ -576,7 +580,7 @@ Because credentials and secrets were committed to source control during developm
 
 | Deliverable | Status |
 |---|---|
-| Git repository | Not committed yet |
+| Git repository | https://github.com/AhmadHamdyAziz/ElectroPi |
 | Full source code | Available in the solution |
 | Database migrations | Available |
 | Seeded test accounts | Available |
