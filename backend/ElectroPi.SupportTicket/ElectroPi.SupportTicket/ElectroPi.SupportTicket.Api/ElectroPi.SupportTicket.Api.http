@@ -1,0 +1,6 @@
+@ElectroPi.SupportTicket.Api_HostAddress = http://localhost:5064
+
+GET {{ElectroPi.SupportTicket.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
