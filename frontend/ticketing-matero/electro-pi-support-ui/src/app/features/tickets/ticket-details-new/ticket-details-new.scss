@@ -1,0 +1,130 @@
+.ticket-details-page {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.page-header {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.page-header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-header-info {
+  min-width: 0;
+}
+
+.page-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-title-row h1 {
+  margin: 0;
+}
+
+.ticket-id {
+  margin-top: 4px;
+  color: #666;
+  font-size: 14px;
+}
+
+.ticket-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+  gap: 24px;
+  align-items: start;
+}
+
+.ticket-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ticket-sidebar {
+  min-width: 0;
+}
+
+.ticket-info-card,
+.comments-card,
+.activity-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ticket-description-section h2 {
+  margin-top: 0;
+}
+
+.ticket-description-section p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ticket-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meta-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: #888;
+}
+
+.ticket-badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.loading-card {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .ticket-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .ticket-details-page {
+    padding: 16px;
+  }
+
+  .ticket-meta {
+    grid-template-columns: 1fr;
+  }
+}

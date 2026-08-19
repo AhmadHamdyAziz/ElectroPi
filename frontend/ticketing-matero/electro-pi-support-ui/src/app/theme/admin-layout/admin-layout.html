@@ -1,0 +1,24 @@
+<div class="matero-container-wrap matero-navbar-top matero-header-fixed"
+     dir="ltr">
+  <ng-progress ngProgressRouter />
+
+  <mat-sidenav-container class="matero-container" autosize autoFocus>
+
+    <mat-sidenav #sidenavNotice position="end" mode="over">
+      <app-sidebar-notice />
+    </mat-sidenav>
+
+    <mat-sidenav-content #content class="matero-content">
+      <app-header
+        [showToggle]="false"
+        [showBranding]="true"
+        (toggleSidenavNotice)="sidenavNotice.toggle()" />
+
+      <app-topmenu />
+
+      <main class="matero-page-content">
+        <router-outlet />
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

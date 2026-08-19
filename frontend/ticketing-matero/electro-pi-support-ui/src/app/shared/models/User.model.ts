@@ -1,0 +1,23 @@
+export type RoleName = 'Admin' | 'Agent' | 'Customer';
+
+export interface User {
+  id: string;
+  email: string;
+  role: Role;
+  customerId?: string;
+  customerName?: string;
+  createdAt: string;
+}
+
+export interface CreateUserRequest {
+  email: string;
+  password: string;
+  role: Role;
+  roleId: string;
+  customerId?: string;
+}
+
+export interface Role {
+    name: RoleName;
+    id: string;
+}

@@ -1,0 +1,136 @@
+<div class="ticket-details-page">
+
+  @if (ticket(); as ticket) {
+
+    <!-- Page header -->
+    <div class="page-header">
+
+      <div class="page-header-content">
+
+        <button
+          mat-icon-button
+          type="button"
+          routerLink="/tickets"
+          aria-label="Back to tickets">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <div class="page-header-info">
+
+          <div class="page-title-row">
+
+            <h1>{{ ticket.title }}</h1>
+
+            <span
+              class="ticket-badge"
+              [class]="getStatusClass(ticket.status)">
+              {{ getStatusLabel(ticket.status) }}
+            </span>
+
+          </div>
+
+          <div class="ticket-id">
+            Ticket #{{ ticket.id }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Main layout -->
+    <div class="ticket-layout">
+
+      <!-- Left column -->
+      <div class="ticket-main">
+
+        <!-- Ticket information -->
+        <mat-card class="ticket-info-card">
+
+          <mat-card-content>
+
+            <section class="ticket-description-section">
+
+              <h2>Description</h2>
+
+              <p>{{ ticket.description }}</p>
+
+            </section>
+
+            <mat-divider />
+
+            <section class="ticket-meta">
+
+              <div class="meta-item">
+                <span class="meta-label">Priority</span>
+
+                <span
+                  class="ticket-badge"
+                  [class]="getPriorityClass(ticket.priority)">
+                  {{ getPriorityLabel(ticket.priority) }}
+                </span>
+              </div>
+
+              <div class="meta-item">
+                <span class="meta-label">Customer</span>
+                <span>{{ ticket.customerId }}</span>
+              </div>
+
+              <div class="meta-item">
+                <span class="meta-label">Assigned Agent</span>
+
+                @if (ticket.assignedAgentId) {
+                  <span>{{ ticket.assignedAgentId }}</span>
+                } @else {
+                  <span class="muted">Unassigned</span>
+                }
+              </div>
+
+              <div class="meta-item">
+                <span class="meta-label">Created</span>
+                <span>{{ ticket.createdAt | date:'medium' }}</span>
+              </div>
+
+            </section>
+
+          </mat-card-content>
+
+        </mat-card>
+
+
+        <!-- Comments -->
+        <app-ticket-comments
+          [ticketId]="ticket.id" />
+
+      </div>
+
+
+      <!-- Right column -->
+        <aside class="ticket-sidebar">
+
+        <app-ticket-actions
+            [ticket]="ticket"
+            (actionCompleted)="reloadTicket()" />
+
+        <app-ticket-activity
+            [ticketId]="ticket.id" />
+
+        </aside>
+
+    </div>
+
+  } @else {
+
+    <mat-card class="loading-card">
+
+      <mat-card-content>
+        Loading ticket...
+      </mat-card-content>
+
+    </mat-card>
+
+  }
+
+</div>

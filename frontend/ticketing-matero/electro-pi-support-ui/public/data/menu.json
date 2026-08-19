@@ -1,0 +1,64 @@
+{
+  "menu": [
+    {
+      "route": "dashboard",
+      "name": "Dashboard",
+      "type": "link",
+      "icon": "dashboard"
+    },
+    {
+      "route": "tickets",
+      "name": "Tickets",
+      "type": "sub",
+      "icon": "confirmation_number",
+      "children": [
+        {
+          "route": "",
+          "name": "My Tickets",
+          "type": "link"
+        },
+        {
+          "route": "create",
+          "name": "Create Ticket",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "route": "admin",
+      "name": "Users",
+      "type": "sub",
+      "icon": "people",
+      "children": [
+        {
+          "route": "users",
+          "name": "List Users",
+          "type": "link"
+        },
+        {
+          "route": "users/new",
+          "name": "Create User",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "route": "admin",
+      "name": "Customers",
+      "type": "sub",
+      "icon": "clients",
+      "children": [
+        {
+          "route": "List",
+          "name": "List Customers",
+          "type": "link"
+        },
+        {
+          "route": "New",
+          "name": "Create Customer",
+          "type": "link"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.activity-empty {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.activity-empty mat-icon {
+  margin-bottom: 8px;
+}

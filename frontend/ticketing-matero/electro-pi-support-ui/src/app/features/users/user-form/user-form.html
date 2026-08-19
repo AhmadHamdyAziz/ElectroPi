@@ -1,0 +1,155 @@
+<div class="user-form-page">
+
+  <div class="page-header">
+
+    <button
+      mat-icon-button
+      type="button"
+      (click)="cancel()">
+
+      <mat-icon>arrow_back</mat-icon>
+
+    </button>
+
+    <div>
+      <h1>Create User</h1>
+      <p>Create a new system user.</p>
+    </div>
+
+  </div>
+
+  <div class="form-card">
+
+    <form (submit)="$event.preventDefault(); onSubmit()">
+
+      <div class="form-grid">
+
+        <mat-form-field
+          appearance="outline">
+
+          <mat-label>Email</mat-label>
+
+          <input
+            matInput
+            type="email"
+            [value]="email()"
+            (input)="email.set($any($event.target).value)"
+            autocomplete="email" />
+
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline">
+
+          <mat-label>Password</mat-label>
+
+          <input
+            matInput
+            type="password"
+            [value]="password()"
+            (input)="password.set($any($event.target).value)"
+            autocomplete="new-password" />
+
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline">
+
+          <mat-label>Role</mat-label>
+
+          <mat-select
+            [value]="role()"
+            (selectionChange)="role.set($event.value)">
+
+            <mat-option value="Admin">
+              Admin
+            </mat-option>
+
+            <mat-option value="Agent">
+              Agent
+            </mat-option>
+
+            <mat-option value="Customer">
+              Customer
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+        @if (isCustomer()) {
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Customer</mat-label>
+
+                <input
+                matInput
+                [formControl]="customerSearch"
+                [matAutocomplete]="customerAuto">
+
+                <mat-autocomplete
+                #customerAuto="matAutocomplete"
+                (optionSelected)="
+                    onCustomerSelected($event.option.value)
+                "
+                [displayWith]="displayCustomer">
+
+                @for (customer of customers(); track customer.id) {
+
+                    <mat-option [value]="customer">
+
+                    {{ customer.name }}
+
+                    </mat-option>
+
+                }
+
+                </mat-autocomplete>
+
+                @if (loadingCustomers()) {
+                <mat-spinner
+                    matSuffix
+                    diameter="20">
+                </mat-spinner>
+                }
+
+            </mat-form-field>
+
+        }
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          mat-button
+          type="button"
+          (click)="cancel()"
+          [disabled]="saving()">
+
+          Cancel
+
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="saving()">
+
+          @if (saving()) {
+            Creating...
+          } @else {
+            Create User
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,112 @@
+<mat-card class="comments-card">
+
+  <mat-card-header>
+    <mat-card-title>Comments</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    @if (comments(); as result) {
+
+      @if (result.items.length > 0) {
+
+        <div class="comments-list">
+
+          @for (comment of result.items; track comment.id) {
+
+            <div class="comment-item">
+
+              <div class="comment-header">
+
+                <div class="comment-author">
+                  <mat-icon>account_circle</mat-icon>
+                  <span>{{ comment.authorId }}</span>
+                </div>
+
+                <span class="comment-date">
+                  {{ comment.createdAt | date:'medium' }}
+                </span>
+
+              </div>
+
+              <div class="comment-body">
+                {{ comment.comment }}
+              </div>
+
+            </div>
+
+          }
+
+        </div>
+
+        @if (result.totalPages > 1) {
+
+          <mat-paginator
+            [length]="result.totalCount"
+            [pageSize]="result.pageSize"
+            [pageIndex]="result.pageNumber - 1"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="onCommentsPageChange($event)" />
+
+        }
+
+      } @else {
+
+        <div class="comments-empty">
+
+          <mat-icon>chat_bubble_outline</mat-icon>
+
+          <p>No comments yet.</p>
+
+        </div>
+
+      }
+
+    }
+
+
+    <!-- Add comment -->
+    <div class="comment-form">
+
+      <mat-form-field
+        appearance="outline"
+        class="comment-field">
+
+        <mat-label>Add a comment</mat-label>
+
+        <textarea
+          matInput
+          rows="4"
+          placeholder="Write your comment..."
+          [value]="commentText()"
+          (input)="commentText.set($any($event.target).value)">
+        </textarea>
+
+      </mat-form-field>
+
+      <div class="comment-actions">
+
+        <button
+          mat-flat-button
+          type="button"
+          [disabled]="
+            addingComment() ||
+            !commentText().trim()
+          "
+          (click)="addComment()">
+
+          @if (addingComment()) {
+            Adding...
+          } @else {
+            Add Comment
+          }
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

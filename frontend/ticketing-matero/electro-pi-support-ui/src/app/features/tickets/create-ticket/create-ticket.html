@@ -1,0 +1,103 @@
+<div class="ticket-create-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Create Ticket</h1>
+      <p>Create a new support ticket.</p>
+    </div>
+
+    <button
+      mat-stroked-button
+      routerLink="/tickets/list">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Tickets
+    </button>
+  </div>
+
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>Ticket Information</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form (submit)="submit(); $event.preventDefault()">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+
+        <input
+            matInput
+            placeholder="Enter ticket title"
+            [value]="title()"
+            (input)="title.set($any($event.target).value)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+
+        <textarea
+            matInput
+            rows="6"
+            placeholder="Describe the problem"
+            [value]="description()"
+            (input)="description.set($any($event.target).value)">
+        </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Priority</mat-label>
+
+        <mat-select
+            [value]="priority()"
+            (selectionChange)="priority.set($event.value)">
+
+            <mat-option [value]="TicketPriority.Low">
+                Low
+            </mat-option>
+
+            <mat-option [value]="TicketPriority.Medium">
+                Medium
+            </mat-option>
+
+            <mat-option [value]="TicketPriority.High">
+                High
+            </mat-option>
+
+            <mat-option [value]="TicketPriority.Critical">
+                Critical
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+
+          <button
+            mat-button
+            type="button"
+            routerLink="/tickets/list">
+            Cancel
+          </button>
+
+            <button
+                mat-flat-button
+                type="submit"
+                [disabled]="saving()">
+
+                @if (saving()) {
+                    Creating...
+                } @else {
+                    Create Ticket
+                }
+            </button>
+
+        </div>
+
+      </form>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
