@@ -24,7 +24,7 @@ This README documents the implemented functionality, incomplete functionality, a
 
 | Requirement | Database | Backend | Frontend |
 |---|---|---|---|
-| Manage users | Yes | Partial | Partial |
+| Manage users | Yes | Yes | Partial |
 | View all tickets | Yes | Yes | Yes |
 | Assign tickets | Yes | Yes | Not implemented |
 | Update priority | Yes | Not implemented | Not implemented |
@@ -60,7 +60,7 @@ Roles can be assigned when creating a user, but changing an existing user's role
 | View assigned tickets | Supported by model | Not fully exposed/tested | Not implemented |
 | Update ticket status | Business rules | API not implemented | Not implemented |
 | Add comments | Yes | Yes | Yes |
-| Log time | Not implemented | Not implemented | Not implemented |
+| Log time | Yes | Not implemented | Not implemented |
 
 Agent functionality has not been fully tested because the Agent workflow has not been completed through the API/UI.
 
@@ -347,7 +347,6 @@ The database contains the core entities required by the application, including:
 - Tickets.
 - Comments.
 - Ticket activities.
-- Ticket assignment information.
 
 Comments are persisted in their own table rather than being stored directly as ticket activities.
 
