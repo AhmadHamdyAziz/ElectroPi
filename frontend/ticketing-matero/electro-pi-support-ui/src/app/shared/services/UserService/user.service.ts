@@ -1,7 +1,7 @@
 // user.service.ts
 
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import {
@@ -20,8 +20,12 @@ export class UserService {
       `${environment.apiUrl}/api/usermanagement/users`;
   private readonly http = inject(HttpClient);
 
-  getUsers(): Observable<PaginationResponse<User>> {
-    return this.http.get<PaginationResponse<User>>(this.apiUrl);
+  getUsers(pageNumber: number, pageSize: number): Observable<PaginationResponse<User>> {
+    const params = new HttpParams()
+      .set('Pagination.PageNumber', pageNumber)
+      .set('Pagination.PageSize', pageSize);
+
+    return this.http.get<PaginationResponse<User>>(this.apiUrl, { params });
   }
 
   createUser(request: CreateUserRequest): Observable<string> {
