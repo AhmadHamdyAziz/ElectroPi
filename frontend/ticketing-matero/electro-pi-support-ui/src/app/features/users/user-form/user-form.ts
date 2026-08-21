@@ -31,7 +31,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import {
-  UserRole,
+  Role,
   CreateUserRequest
 } from '../../../shared/models/User.model';
 
@@ -63,11 +63,13 @@ export class UserFormComponent {
 
   readonly email = signal('');
   readonly password = signal('');
-  readonly role = signal<UserRole>('Customer');
+  readonly selectedRole = signal<Role | null>(null);
   readonly customerId = signal('');
 
+  readonly roles = signal<Role[]>([]);
+
   readonly isCustomer = computed(
-    () => this.role() === 'Customer'
+    () => this.selectedRole()?.name === 'Customer'
   );
 
   readonly saving = signal(false);
@@ -82,7 +84,7 @@ export class UserFormComponent {
     }
 
     if (
-      this.role() === 'Customer' &&
+      this.selectedRole()?.name === 'Customer' &&
       !this.customerId()
     ) {
       return;
@@ -91,7 +93,7 @@ export class UserFormComponent {
     const request: CreateUserRequest = {
       email: this.email().trim(),
       password: this.password(),
-      role: this.role(),
+      roleId: this.selectedRole()?.id!,
       customerId: this.isCustomer()
         ? this.customerId()
         : undefined
@@ -123,6 +125,7 @@ readonly customers = signal<Customer[]>([]);
 readonly loadingCustomers = signal(false);
 
 constructor() {
+  this.loadRoles();
   this.setupCustomerSearch();
 }
 
@@ -157,5 +160,16 @@ private setupCustomerSearch(): void {
 
   displayCustomer(customer: Customer | null): string {
     return customer?.name ?? '';
+  }
+
+  loadRoles(): void {
+    this.userService.getRoles().subscribe({
+      next: roles => {
+        if (roles.length > 0) {
+          this.roles.set(roles);
+          this.selectedRole.set(roles[0]);
+        }
+      }
+    });
   }
 }

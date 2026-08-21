@@ -58,20 +58,22 @@
           <mat-label>Role</mat-label>
 
           <mat-select
-            [value]="role()"
-            (selectionChange)="role.set($event.value)">
+            [value]="selectedRole()"
+            (selectionChange)="selectedRole.set($event.value)">
 
-            <mat-option value="Admin">
-              Admin
-            </mat-option>
+            <mat-select-trigger>
+              {{ selectedRole()?.name || 'Select a role' }}
+            </mat-select-trigger>
 
-            <mat-option value="Agent">
-              Agent
-            </mat-option>
+            @for (role of roles(); track role.id) {
 
-            <mat-option value="Customer">
-              Customer
-            </mat-option>
+                <mat-option [value]="role">
+
+                {{ role.name }}
+
+                </mat-option>
+
+            }
 
           </mat-select>
 
