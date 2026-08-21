@@ -2,6 +2,8 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
+import { Router, RouterLink } from '@angular/router';
+
 import {
   AuthUser,
   LoginRequest,
@@ -21,9 +23,12 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly tokenStorage = inject(TokenStorageService);
 
-private readonly currentUser = signal<AuthUser | null>(
-  this.tokenStorage.getUser()
-);
+  private readonly router = inject(Router);
+
+  private readonly currentUser = signal<AuthUser | null>(
+    this.tokenStorage.getUser()
+  );
+
   readonly user = this.currentUser.asReadonly();
 
   readonly isAuthenticated = computed(
@@ -55,16 +60,17 @@ private readonly currentUser = signal<AuthUser | null>(
   logout(): void {
     this.tokenStorage.clear();
     this.currentUser.set(null);
+    this.router.navigate(['/auth/login']);
   }
 
   hasRole(role: UserRole): boolean {
-  return this.currentUser()?.role === role;
-}
+    return this.currentUser()?.role === role;
+  }
 
-hasAnyRole(roles: UserRole[]): boolean {
-  const currentRole = this.currentUser()?.role;
+  hasAnyRole(roles: UserRole[]): boolean {
+    const currentRole = this.currentUser()?.role;
 
-  return currentRole !== undefined &&
-         roles.includes(currentRole);
-}
+    return currentRole !== undefined &&
+      roles.includes(currentRole);
+  }
 }

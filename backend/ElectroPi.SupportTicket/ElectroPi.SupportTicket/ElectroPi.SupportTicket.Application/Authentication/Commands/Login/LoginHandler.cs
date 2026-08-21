@@ -31,7 +31,7 @@ namespace ElectroPi.SupportTicket.Application.Authentication.Commands.Login
             var email = request.Email.Trim();
 
             var user = await _db.Users
-                .Include(u=>u.Role)
+                .Include(u => u.Role)
                 .SingleOrDefaultAsync(
                     x => x.Email == email,
                     cancellationToken);
@@ -58,7 +58,14 @@ namespace ElectroPi.SupportTicket.Application.Authentication.Commands.Login
                 user.CustomerId,
                 user.Role.Name);
 
-            return new LoginResult(token);
+            return new LoginResult(
+                new LoggedInUserDto(
+                    user.Id,
+                    user.Email,
+                    user.Role.Name,
+                    user.CustomerId
+                ),
+                token);
         }
     }
 }

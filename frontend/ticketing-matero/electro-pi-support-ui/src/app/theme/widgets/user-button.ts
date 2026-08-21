@@ -6,13 +6,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AuthService, SettingsService } from '@core';
+import { SettingsService } from '@core';
+import { AuthService } from '../../core/auth/auth';
 
 @Component({
   selector: 'app-user',
   template: `
     <button matIconButton [matMenuTriggerFor]="menu">
-      <img class="avatar" [src]="user()?.avatar" width="24" alt="avatar" />
+      <!-- <img class="avatar" [src]="user()?.avatar" width="24" alt="avatar" /> -->
     </button>
 
     <mat-menu #menu="matMenu">
@@ -48,12 +49,10 @@ export class UserButton {
   private readonly router = inject(Router);
   private readonly settings = inject(SettingsService);
 
-  user = toSignal(this.auth.user());
+  //user = toSignal(this.auth.user());
 
   logout() {
-    this.auth.logout().subscribe(() => {
-      this.router.navigateByUrl('/auth/login');
-    });
+    this.auth.logout();
   }
 
   restore() {
