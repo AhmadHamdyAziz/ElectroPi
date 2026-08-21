@@ -9,7 +9,7 @@ namespace ElectroPi.SupportTicket.Domain.Constants
     public static class RoleNames
     {
         public const string Customer = "Customer";
-        public const string Agent = "SupportAgent";
+        public const string Agent = "Agent";
         public const string Admin = "Admin";
     }
 }
