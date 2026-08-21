@@ -23,6 +23,9 @@ namespace ElectroPi.SupportTicket.Infrastructure.Identity
         public Guid? CustomerId =>
             GetGuidClaim("customerId");
 
+        public string RoleName =>
+            _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.Role)?.Value;
+
         private Guid? GetGuidClaim(string claimType)
         {
             var value = _httpContextAccessor.HttpContext?

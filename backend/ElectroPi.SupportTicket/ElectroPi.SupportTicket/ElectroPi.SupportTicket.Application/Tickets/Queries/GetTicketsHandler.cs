@@ -2,6 +2,7 @@
 using ElectroPi.SupportTicket.Application.Abstractions.Persistence;
 using ElectroPi.SupportTicket.Application.Common;
 using ElectroPi.SupportTicket.Application.Tickets.DTOs;
+using ElectroPi.SupportTicket.Domain.Constants;
 using ElectroPi.SupportTicket.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,12 @@ namespace ElectroPi.SupportTicket.Application.Tickets.Queries
             IQueryable<Ticket> query,
             TicketFilter? filter)
         {
+            if (currentUser.RoleName == RoleNames.Agent)
+            {
+                query = query.Where(x =>
+                    x.AssignedAgentId == currentUser.UserId);
+            }
+
             if (currentUser.CustomerId.HasValue)
             {
                 query = query.Where(x =>
