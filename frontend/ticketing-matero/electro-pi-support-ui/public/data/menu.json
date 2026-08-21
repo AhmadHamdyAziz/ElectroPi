@@ -49,12 +49,12 @@
       "icon": "clients",
       "children": [
         {
-          "route": "List",
+          "route": "customers",
           "name": "List Customers",
           "type": "link"
         },
         {
-          "route": "New",
+          "route": "customers/new",
           "name": "Create Customer",
           "type": "link"
         }
