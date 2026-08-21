@@ -28,7 +28,7 @@ This README documents the implemented functionality, incomplete functionality, a
 
 | Requirement | Database | Backend | Frontend |
 |---|---|---|---|
-| Manage users | Yes | Yes | Partial |
+| Manage users | Yes | Yes | Yes |
 | View all tickets | Yes | Yes | Yes |
 | Assign tickets | Yes | Yes | Not implemented |
 | Update priority | Yes | Not implemented | Not implemented |
@@ -44,7 +44,7 @@ The backend supports:
 - User filtering by name.
 - Pagination.
 
-User creation is also implemented at the backend level, but the frontend currently points to an incorrect API URL.
+User creation is works as expected.
 
 The following functionality was intentionally omitted for task simplicity:
 
