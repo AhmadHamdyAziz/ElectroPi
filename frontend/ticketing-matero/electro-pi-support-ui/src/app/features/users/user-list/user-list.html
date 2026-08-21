@@ -123,11 +123,11 @@
 
             <span
               class="role-badge"
-              [class.admin]="user.role === 'Admin'"
-              [class.agent]="user.role === 'Agent'"
-              [class.customer]="user.role === 'Customer'">
+              [class.admin]="user.roleName === 'Admin'"
+              [class.agent]="user.roleName === 'Agent'"
+              [class.customer]="user.roleName === 'Customer'">
 
-              {{ user.role }}
+              {{ user.roleName }}
 
             </span>
 
@@ -149,7 +149,7 @@
             mat-cell
             *matCellDef="let user">
 
-            {{ user.customerName || '—' }}
+            {{ user.customerId || '—' }}
 
           </td>
 

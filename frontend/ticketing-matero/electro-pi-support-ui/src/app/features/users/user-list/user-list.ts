@@ -19,9 +19,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import {
   User,
-  UserRole
+  RoleName
 } from '../../../shared/models/User.model';
 
+import { PaginationResponse } from '../../../shared/models/Ticket.models';
+  
 import { UserService } from '../../../shared/services/UserService/user.service';
 
 @Component({
@@ -44,12 +46,15 @@ import { UserService } from '../../../shared/services/UserService/user.service';
 })
 export class UserListComponent {
 
+  pageIndex = 0;
+  pageSize = 10;
+
   private readonly userService = inject(UserService);
 
-  readonly users = signal<User[]>([]);
+  readonly users = signal<PaginationResponse<User>>({ items: [], totalCount: 0, pageNumber: 1, pageSize: 10, totalPages: 0, hasPreviousPage: false, hasNextPage: false });
   readonly loading = signal(false);
   readonly search = signal('');
-  readonly selectedRole = signal<UserRole | 'All'>('All');
+  readonly selectedRole = signal<RoleName | 'All'>('All');
 
   readonly displayedColumns = [
     'email',
@@ -63,17 +68,17 @@ export class UserListComponent {
       .trim()
       .toLowerCase();
 
-    const role = this.selectedRole();
+    const selectedRole = this.selectedRole();
 
-    return this.users().filter(user => {
+    return this.users().items.filter(user => {
 
       const matchesSearch =
         !search ||
         user.email.toLowerCase().includes(search);
 
       const matchesRole =
-        role === 'All' ||
-        user.role === role;
+        selectedRole === 'All' ||
+        user.roleName === selectedRole;
 
       return matchesSearch && matchesRole;
     });
@@ -83,10 +88,10 @@ export class UserListComponent {
     this.loadUsers();
   }
 
-  loadUsers(): void {
+  loadUsers(): void{
     this.loading.set(true);
 
-    this.userService.getUsers().subscribe({
+    this.userService.getUsers(this.pageIndex + 1, this.pageSize).subscribe({
       next: users => {
         this.users.set(users);
         this.loading.set(false);
@@ -95,13 +100,14 @@ export class UserListComponent {
         this.loading.set(false);
       }
     });
+    this.loading.set(false);
   }
 
   onSearch(value: string): void {
     this.search.set(value);
   }
 
-  onRoleChange(role: UserRole | 'All'): void {
+  onRoleChange(role: RoleName | 'All'): void {
     this.selectedRole.set(role);
   }
 }
