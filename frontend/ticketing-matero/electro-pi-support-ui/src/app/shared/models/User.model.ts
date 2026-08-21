@@ -13,12 +13,11 @@ export interface User {
 export interface CreateUserRequest {
   email: string;
   password: string;
-  role: Role;
   roleId: string;
   customerId?: string;
 }
 
 export interface Role {
-    name: RoleName;
+    name: string;
     id: string;
 }
