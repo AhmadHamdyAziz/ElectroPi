@@ -24,7 +24,7 @@ import {
   RoleName
 } from '../../../shared/models/User.model';
 
-import { PaginationResponse } from '../../../shared/models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
   
 import { UserService } from '../../../shared/services/UserService/user.service';
 

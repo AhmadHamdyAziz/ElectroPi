@@ -5,12 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import {
-  PaginationResponse,
   TicketDetails as Ticket,
   TicketComment,
   TicketPriority,
   TicketState
 } from '../../../shared/models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
 
 import { TicketService } from '../../../shared/services/TicketService/ticket.service';
 

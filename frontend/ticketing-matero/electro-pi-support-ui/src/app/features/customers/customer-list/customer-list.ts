@@ -21,7 +21,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 import { Customer } from '../../../shared/models/Customer.model';
 
-import { PaginationResponse } from '../../../shared/models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
   
 import { CustomerService } from '../../../shared/services/CustomerService/customer.service';
 

@@ -16,9 +16,9 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 import {
-  PaginationResponse,
   TicketComment
 } from '../../../../shared/models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
 
 import { TicketService } from '../../../../shared/services/TicketService/ticket.service';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from "@angular/material/card";

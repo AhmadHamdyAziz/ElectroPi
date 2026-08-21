@@ -19,15 +19,6 @@ export interface TicketDetails {
   createdAt: string;
 }
 
-export interface PaginationResponse<T> {
-  items: T[];
-  pageNumber: number;
-  pageSize: number;
-  totalCount: number;
-  totalPages: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
-}
 export enum TicketState {
   Open = 0,
   InProgress = 1,

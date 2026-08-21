@@ -3,7 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
-import { PaginationResponse, TicketListItem, TicketDetails, CreateTicketRequest, TicketComment, AddTicketCommentRequest } from '../../models/Ticket.models';
+import { TicketListItem, TicketDetails, CreateTicketRequest, TicketComment, AddTicketCommentRequest } from '../../models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
 
 @Injectable({
   providedIn: 'root'

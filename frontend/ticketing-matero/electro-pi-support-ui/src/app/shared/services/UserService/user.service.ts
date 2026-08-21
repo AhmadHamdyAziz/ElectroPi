@@ -9,7 +9,7 @@ import {
   User
 } from '../../models/User.model';
 import { environment } from '@env/environment.prod';
-import { PaginationResponse } from '@shared/models/Ticket.models';
+import { PaginationResponse } from "@shared/models/PaginationResponse";
 
 @Injectable({
   providedIn: 'root'
