@@ -4,11 +4,22 @@ import { environment } from '@env/environment';
 import { PaginationResponse } from '@shared/models/Ticket.models';
 import { Observable } from 'rxjs';
 import { Customer } from '../../models/Customer.model';
+import { CreateCustomerRequest } from '@shared/models/Customer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
+
+     private readonly apiUrl =
+        `${environment.apiUrl}/api/customerManagement`;
+
+  createCustomer(request: CreateCustomerRequest): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}`,
+      request
+    );
+  }
   private readonly http = inject(HttpClient);
 
   filter(
@@ -26,7 +37,7 @@ export class CustomerService {
     }
 
     return this.http.get<PaginationResponse<Customer>>(
-      `${environment.apiUrl}/api/customerManagement/filter`,
+      `${this.apiUrl}/filter`,
       { params }
     );
   }

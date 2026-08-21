@@ -1,0 +1,76 @@
+<p>create-customer works!</p>
+<div class="user-form-page">
+
+  <div class="page-header">
+
+    <button
+      mat-icon-button
+      type="button"
+      (click)="cancel()">
+
+      <mat-icon>arrow_back</mat-icon>
+
+    </button>
+
+    <div>
+      <h1>Create Customer</h1>
+      <p>Create a new customer.</p>
+    </div>
+
+  </div>
+
+  <div class="form-card">
+
+    <form (submit)="$event.preventDefault(); onSubmit()">
+
+      <div class="form-grid">
+
+        <mat-form-field
+          appearance="outline">
+
+          <mat-label>Email</mat-label>
+
+          <input
+            matInput
+            type="name"
+            [value]="name()"
+            (input)="name.set($any($event.target).value)"
+            autocomplete="name" />
+
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          mat-button
+          type="button"
+          (click)="cancel()"
+          [disabled]="saving()">
+
+          Cancel
+
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="saving()">
+
+          @if (saving()) {
+            Creating...
+          } @else {
+            Create Customer
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

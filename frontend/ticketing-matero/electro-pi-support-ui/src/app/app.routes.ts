@@ -9,7 +9,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { UserListComponent } from './features/users/user-list/user-list';
 import { UserFormComponent } from './features/users/user-form/user-form';
 import { CustomerListComponent } from './features/customers/customer-list/customer-list';
-import { CreateCustomer } from './features/customers/create-customer/create-customer';
+import { CreateCustomerComponent } from './features/customers/create-customer/create-customer';
 
 export const routes: Routes = [
   {
@@ -78,7 +78,7 @@ export const routes: Routes = [
           },
           {
             path: 'new',
-            component: CreateCustomer
+            component: CreateCustomerComponent
           }
         ]
       },

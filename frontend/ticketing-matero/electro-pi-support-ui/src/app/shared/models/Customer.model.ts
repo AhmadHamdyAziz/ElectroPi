@@ -3,3 +3,7 @@ export interface Customer {
   name: string;
   createdAt: string;
 }
+
+export interface CreateCustomerRequest {
+  name: string;
+}
