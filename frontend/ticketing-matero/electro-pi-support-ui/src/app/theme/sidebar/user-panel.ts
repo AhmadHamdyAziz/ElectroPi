@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '@core/authentication';
+import { AuthService2 } from '@core/authentication';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -23,6 +23,6 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [RouterLink, MatButtonModule, MatIconModule, MatTooltipModule, TranslateModule],
 })
 export class UserPanel {
-  private readonly auth = inject(AuthService);
+  private readonly auth = inject(AuthService2);
   user = toSignal(this.auth.user());
 }

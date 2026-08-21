@@ -8,7 +8,7 @@ import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService2 {
   private readonly loginService = inject(LoginService);
   private readonly tokenService = inject(TokenService);
 

@@ -11,7 +11,7 @@ import { MtxButtonModule } from '@ng-matero/extensions/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
 
-import { AuthService } from '@core/authentication';
+import { AuthService2 } from '@core/authentication';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,7 @@ import { AuthService } from '@core/authentication';
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
-  private readonly auth = inject(AuthService);
+  private readonly auth = inject(AuthService2);
 
   isSubmitting = false;
 

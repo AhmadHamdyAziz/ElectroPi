@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { AuthService, User } from '@core/authentication';
+import { AuthService2, User } from '@core/authentication';
 import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
 import { switchMap, tap } from 'rxjs';
 import { Menu, MenuService } from './menu.service';
@@ -8,7 +8,7 @@ import { Menu, MenuService } from './menu.service';
   providedIn: 'root',
 })
 export class StartupService {
-  private readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthService2);
   private readonly menuService = inject(MenuService);
   private readonly permissonsService = inject(NgxPermissionsService);
   private readonly rolesService = inject(NgxRolesService);

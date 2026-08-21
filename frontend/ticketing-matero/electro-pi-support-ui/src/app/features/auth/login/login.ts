@@ -56,7 +56,7 @@ export class Login {
       next: () => {
         this.router.navigate(['/']);
       },
-
+      
       error: () => {
         this.loading.set(false);
         this.error.set('Invalid email or password.');
