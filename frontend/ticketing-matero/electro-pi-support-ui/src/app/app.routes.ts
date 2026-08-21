@@ -8,6 +8,8 @@ import { Error500 } from './routes/sessions/error-500';
 import { authGuard } from './core/guards/auth-guard';
 import { UserListComponent } from './features/users/user-list/user-list';
 import { UserFormComponent } from './features/users/user-form/user-form';
+import { CustomerListComponent } from './features/customers/customer-list/customer-list';
+import { CreateCustomer } from './features/customers/create-customer/create-customer';
 
 export const routes: Routes = [
   {
@@ -66,17 +68,26 @@ export const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'admin/customers',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            component: CustomerListComponent
+          },
+          {
+            path: 'new',
+            component: CreateCustomer
+          }
+        ]
+      },
       { path: '403', component: Error403 },
       { path: '404', component: Error404 },
       { path: '500', component: Error500 },
     ],
   },
-  // {
-  //   path: 'tickets',
-  //   loadComponent: () =>
-  //     import('./features/tickets/ticket-list/ticket-list')
-  //       .then(m => m.TicketList)
-  // },
+
   {
     path: 'auth',
     children: [
