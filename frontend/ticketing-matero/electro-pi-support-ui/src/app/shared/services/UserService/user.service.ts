@@ -34,4 +34,10 @@ export class UserService {
       request
     );
   }
+
+  getRoles(): Observable<{ name: string; id: string }[]> {
+    return this.http.get<{ name: string; id: string }[]>(
+      `${environment.apiUrl}/api/usermanagement/roles`
+    );
+  }
 }
