@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+
 import { Customer } from '../../../shared/models/Customer.model';
 
 import { PaginationResponse } from '../../../shared/models/Ticket.models';
@@ -35,7 +37,8 @@ import { CustomerService } from '../../../shared/services/CustomerService/custom
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss',
@@ -50,6 +53,7 @@ export class CustomerListComponent {
 
   readonly customers = signal<PaginationResponse<Customer>>({ items: [], totalCount: 0, pageNumber: 1, pageSize: 10, totalPages: 0, hasPreviousPage: false, hasNextPage: false });
   readonly loading = signal(false);
+  readonly totalCustomers = signal(0);
   readonly search = signal('');
 
   readonly displayedColumns = [
@@ -83,6 +87,7 @@ export class CustomerListComponent {
     this.customerService.filter(this.pageIndex, this.pageSize).subscribe({
       next: customers => {
         this.customers.set(customers);
+        this.totalCustomers.set(customers.totalCount);
         this.loading.set(false);
       },
       error: () => {
@@ -94,5 +99,13 @@ export class CustomerListComponent {
 
   onSearch(value: string): void {
     this.search.set(value);
+  }
+
+  onPageChange(event: PageEvent): void {
+
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+
+    this.loadCustomers();
   }
 }

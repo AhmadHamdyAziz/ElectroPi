@@ -190,6 +190,15 @@
 
       </table>
 
+      <mat-paginator
+        [length]="totalUsers()"
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 50]"
+        showFirstLastButtons
+        (page)="onPageChange($event)">
+      </mat-paginator>
+
       @if (filteredUsers().length === 0) {
 
         <div class="empty-state">

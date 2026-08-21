@@ -124,14 +124,14 @@
 
       </div>
 
-<mat-paginator
-  [length]="totalTickets()"
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[5, 10, 25, 50]"
-  showFirstLastButtons
-  (page)="onPageChange($event)">
-</mat-paginator>
+      <mat-paginator
+        [length]="totalTickets()"
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 50]"
+        showFirstLastButtons
+        (page)="onPageChange($event)">
+      </mat-paginator>
 
     </mat-card-content>
 

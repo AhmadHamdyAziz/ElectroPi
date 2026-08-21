@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+
 import {
   User,
   RoleName
@@ -38,7 +40,8 @@ import { UserService } from '../../../shared/services/UserService/user.service';
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   templateUrl: './user-list.html',
   styleUrl: './user-list.scss',
@@ -53,6 +56,7 @@ export class UserListComponent {
 
   readonly users = signal<PaginationResponse<User>>({ items: [], totalCount: 0, pageNumber: 1, pageSize: 10, totalPages: 0, hasPreviousPage: false, hasNextPage: false });
   readonly loading = signal(false);
+  readonly totalUsers = signal(0);
   readonly search = signal('');
   readonly selectedRole = signal<RoleName | 'All'>('All');
 
@@ -94,6 +98,7 @@ export class UserListComponent {
     this.userService.getUsers(this.pageIndex + 1, this.pageSize).subscribe({
       next: users => {
         this.users.set(users);
+        this.totalUsers.set(users.totalCount);
         this.loading.set(false);
       },
       error: () => {
@@ -109,5 +114,13 @@ export class UserListComponent {
 
   onRoleChange(role: RoleName | 'All'): void {
     this.selectedRole.set(role);
+  }
+
+    onPageChange(event: PageEvent): void {
+
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+
+    this.loadUsers();
   }
 }
