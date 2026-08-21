@@ -3,11 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '@env/environment';
 import { PaginationResponse } from '@shared/models/Ticket.models';
 import { Observable } from 'rxjs';
-
-export interface Customer {
-  id: string;
-  name: string;
-}
+import { Customer } from '../../models/Customer.model';
 
 @Injectable({
   providedIn: 'root'
