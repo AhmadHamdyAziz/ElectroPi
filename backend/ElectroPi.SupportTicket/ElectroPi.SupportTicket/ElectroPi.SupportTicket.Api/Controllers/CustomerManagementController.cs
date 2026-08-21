@@ -17,7 +17,7 @@ namespace ElectroPi.SupportTicket.Api.Controllers
     {
         [HttpGet("filter")]
         [Authorize(Roles = RoleNames.Admin)]
-        public async Task<ActionResult<PaginationResponse<CustomerListItemDto>>> filter(
+        public async Task<ActionResult<PaginationResponse<CustomerListItemDto>>> Filter(
             [FromQuery]
             GetCustomersQuery query,
             CancellationToken cancellationToken)

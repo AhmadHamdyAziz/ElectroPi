@@ -63,6 +63,8 @@ namespace ElectroPi.SupportTicket.Application.Users.Commands.CreateUser
             user.SetPasswordHash(passwordHash);
 
             await db.Users.AddAsync(user, cancellationToken);
+
+            await db.SaveChangesAsync(cancellationToken);
         }
     }
 }
