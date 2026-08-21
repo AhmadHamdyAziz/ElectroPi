@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { environment } from '@env/environment';
 import { PaginationResponse } from '@shared/models/Ticket.models';
 import { Observable } from 'rxjs';
 
@@ -21,7 +22,7 @@ export class CustomerService {
   ): Observable<PaginationResponse<Customer>> {
 
     let params = new HttpParams()
-     .set('Pagination.PageNumber', pageNumber)
+     .set('Pagination.PageNumber', pageNumber + 1)
       .set('Pagination.PageSize', pageSize);
 
     if (name?.trim()) {
@@ -29,7 +30,7 @@ export class CustomerService {
     }
 
     return this.http.get<PaginationResponse<Customer>>(
-      '/api/customerManagement/filter',
+      `${environment.apiUrl}/api/customerManagement/filter`,
       { params }
     );
   }
